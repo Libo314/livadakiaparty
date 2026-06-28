@@ -151,6 +151,12 @@
             
             <div id="level-1-container" class="w-full flex flex-col items-center gap-6">
                 
+                <div class="w-full flex justify-center md:hidden animate-bounce text-neutral-400 mt-2 -mb-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+                
                 <div class="flex flex-wrap justify-center gap-6 py-4 w-full">
                     <div id="source-triangle" draggable="true" ondragstart="drag(event)" onclick="selectShape('triangle')"
                          class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="triangle">
