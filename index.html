@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Πρόσκληση στο Πάρτυ του Δημήτρη και της Αλίκης</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        mansalva: ['Mansalva', 'cursive'],
+                        roboto: ['Roboto', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+        
+        .font-mansalva {
+            font-family: 'Mansalva', cursive;
+        }
+
+        .text-size-main {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+        .text-size-title {
+            font-size: 2.5rem;
+            line-height: 3rem;
+        }
+        @media (min-width: 768px) {
+            .text-size-title {
+                font-size: 3.5rem;
+                line-height: 4.2rem;
+            }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-15deg); }
+            50% { transform: rotate(15deg); }
+        }
+
+        .animate-wobble {
+            animation: wobble 1s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen py-8 px-4 flex flex-col items-center justify-start">
+
+    <canvas id="confetti-canvas" class="fixed inset-0 pointer-events-none z-50 w-full h-full"></canvas>
+
+    <div class="w-full max-w-xl mx-auto flex flex-col gap-8">
+        
+        <div class="text-left font-mansalva">
+            <h1 class="text-size-title text-black font-bold tracking-wide transition-colors duration-500">
+                <span id="name-dimitris" class="transition-colors duration-500">Δημήτρης</span> & <span id="name-aliki" class="transition-colors duration-500">Αλίκη</span>
+            </h1>
+            <p class="text-size-main text-black mt-2">Έλατε να γιορτάσουμε τα γενέθλια μας. Γινόμαστε 7!</p>
+        </div>
+
+        <div class="flex flex-row justify-between items-end gap-4 w-full">
+            <div class="flex flex-col gap-5 w-2/3">
+                <div class="font-roboto flex flex-col gap-5 text-size-main">
+                    <div class="flex items-center gap-4">
+                        <div class="text-black shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 3V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-neutral-400 block font-normal">Ημερομηνία</span>
+                            <span class="text-black font-bold">Πέμπτη, 18 Ιουλίου</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="text-black shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-neutral-400 block font-normal">Ώρα Έναρξης</span>
+                            <span class="text-black font-bold">11:30 π.μ.</span>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <div class="text-black shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <span class="text-neutral-400 block font-normal">Τοποθεσία</span>
+                            <span class="text-black font-bold">Εντευκτήριο Εκάλης</span>
+                            <span class="text-neutral-400 block font-normal">Oδός Αγοράς, Εκάλη 145 78</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-2">
+                    <a href="https://maps.app.goo.gl/HxCtZy8gWKcBrYpk8" target="_blank" rel="noopener"
+                       class="inline-flex items-center gap-2 border border-black bg-black text-white py-3 px-6 text-size-main font-bold hover:bg-white hover:text-black transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+                        </svg>
+                        Δείτε στο Χάρτη
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-1/3 flex flex-row justify-end items-end gap-2 pb-2">
+                <div class="flex flex-col items-center">
+                    <img id="head-dimitris" src="dimitris.png" alt="Dimitris" class="w-14 h-14 object-contain origin-bottom z-10 -mb-1 transition-transform" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjwvc3ZnPg=='">
+                    <svg class="w-12 h-20 text-black stroke-current" stroke-width="2" stroke-linecap="round" fill="none" viewBox="0 0 50 100">
+                        <line x1="25" y1="0" x2="25" y2="45" />
+                        <line x1="5" y1="20" x2="45" y2="20" />
+                        <line x1="25" y1="45" x2="10" y2="90" />
+                        <line x1="25" y1="45" x2="40" y2="90" />
+                    </svg>
+                </div>
+                <div class="flex flex-col items-center">
+                    <img id="head-aliki" src="aliki.png" alt="Aliki" class="w-14 h-14 object-contain origin-bottom z-10 -mb-1 transition-transform" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJibGFjayIgc3Ryb2tlLXdpZHRoPSIyIj48Y2lyY2xlIGN4PSIxMiIgY3k9IjEyIiByPSIxMCIvPjwvc3ZnPg=='">
+                    <svg class="w-12 h-16 text-black stroke-current" stroke-width="2" stroke-linecap="round" fill="none" viewBox="0 0 50 100">
+                        <line x1="25" y1="0" x2="25" y2="40" />
+                        <line x1="5" y1="18" x2="45" y2="18" />
+                        <line x1="25" y1="40" x2="12" y2="80" />
+                        <line x1="25" y1="40" x2="38" y2="80" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <hr class="border-t border-neutral-200 my-2" />
+
+        <div id="game-screen" class="w-full">
+            
+            <div id="level-1-container" class="w-full flex flex-col items-center gap-6">
+                
+                <div class="flex flex-wrap justify-center gap-6 py-4 w-full">
+                    <div id="source-triangle" draggable="true" ondragstart="drag(event)" onclick="selectShape('triangle')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="triangle">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 22,22 2,22"></polygon>
+                        </svg>
+                    </div>
+                    <div id="source-circle" draggable="true" ondragstart="drag(event)" onclick="selectShape('circle')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="circle">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div id="source-square" draggable="true" ondragstart="drag(event)" onclick="selectShape('square')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="square">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="1"></rect>
+                        </svg>
+                    </div>
+                    <div id="source-star" draggable="true" ondragstart="drag(event)" onclick="selectShape('star')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="star">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"></polygon>
+                        </svg>
+                    </div>
+                    <div id="source-heart" draggable="true" ondragstart="drag(event)" onclick="selectShape('heart')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="heart">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </div>
+                    <div id="source-diamond" draggable="true" ondragstart="drag(event)" onclick="selectShape('diamond')"
+                         class="shape-item cursor-pointer w-16 h-16 flex items-center justify-center transition-all hover:scale-110 active:scale-95" data-shape="diamond">
+                        <svg class="w-14 h-14 text-black" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 22,12 12,22 2,12"></polygon>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 w-full py-4">
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('circle')" data-shape="circle"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                    </div>
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('star')" data-shape="star"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"></polygon>
+                        </svg>
+                    </div>
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('triangle')" data-shape="triangle"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 22,22 2,22"></polygon>
+                        </svg>
+                    </div>
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('diamond')" data-shape="diamond"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <polygon points="12,2 22,12 12,22 2,12"></polygon>
+                        </svg>
+                    </div>
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('square')" data-shape="square"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <rect x="2" y="2" width="20" height="20" rx="1"></rect>
+                        </svg>
+                    </div>
+                    <div ondragover="allowDrop(event)" ondrop="drop(event)" onclick="targetSlotClicked('heart')" data-shape="heart"
+                         class="target-slot w-16 h-16 flex items-center justify-center transition-all cursor-pointer">
+                        <svg class="target-svg w-14 h-14 text-neutral-200 transition-all duration-300" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        let selectedShape = null;
+        let matchedShapesCount = 0;
+        const totalShapes = 6;
+
+        const shapeColors = {
+            triangle: '#ef4444',
+            circle: '#3b82f6',
+            square: '#22c55e',
+            star: '#eab308',
+            heart: '#ec4899',
+            diamond: '#f97316'
+        };
+
+        let audioCtx = null;
+        function getAudioContext() {
+            if (!audioCtx) {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        function playMatchSound() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                osc1.type = 'sine';
+                osc1.frequency.setValueAtTime(523.25, now);
+                osc1.frequency.exponentialRampToValueAtTime(1046.50, now + 0.15);
+
+                osc2.type = 'triangle';
+                osc2.frequency.setValueAtTime(659.25, now);
+                osc2.frequency.exponentialRampToValueAtTime(1318.51, now + 0.15);
+
+                gain.gain.setValueAtTime(0, now);
+                gain.gain.linearRampToValueAtTime(0.15, now + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc1.start(now);
+                osc2.start(now);
+                osc1.stop(now + 0.4);
+                osc2.stop(now + 0.4);
+            } catch (e) {
+                console.error("Failed to play match sound", e);
+            }
+        }
+
+        function playVictoryMelody() {
+            try {
+                const ctx = getAudioContext();
+                const now = ctx.currentTime;
+                const tempo = 135;
+                const beat = 60 / tempo;
+
+                const notes = [
+                    { f: 392.00, d: 0.75 },
+                    { f: 293.66, d: 0.25 },
+                    { f: 392.00, d: 0.5 },
+                    { f: 293.66, d: 0.5 },
+                    { f: 392.00, d: 0.25 },
+                    { f: 293.66, d: 0.25 },
+                    { f: 392.00, d: 0.25 },
+                    { f: 493.88, d: 0.25 },
+                    { f: 587.33, d: 1.0 },
+                    
+                    { f: 440.00, d: 0.75 },
+                    { f: 293.66, d: 0.25 },
+                    { f: 440.00, d: 0.5 },
+                    { f: 293.66, d: 0.5 },
+                    { f: 440.00, d: 0.25 },
+                    { f: 293.66, d: 0.25 },
+                    { f: 440.00, d: 0.25 },
+                    { f: 370.00, d: 0.25 },
+                    { f: 293.66, d: 1.0 }
+                ];
+
+                let time = now;
+                notes.forEach(note => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+
+                    osc.type = 'triangle';
+                    osc.frequency.setValueAtTime(note.f, time);
+
+                    gain.gain.setValueAtTime(0, time);
+                    gain.gain.linearRampToValueAtTime(0.12, time + 0.03);
+                    gain.gain.exponentialRampToValueAtTime(0.001, time + (note.d * beat) - 0.02);
+
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+
+                    osc.start(time);
+                    osc.stop(time + (note.d * beat));
+
+                    time += note.d * beat;
+                });
+            } catch (e) {
+                console.error("Failed to play victory melody", e);
+            }
+        }
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev) {
+            ev.preventDefault();
+            const data = ev.dataTransfer.getData("text");
+            const draggedElement = document.getElementById(data);
+            const targetSlot = ev.currentTarget;
+            
+            const shapeType = draggedElement.getAttribute("data-shape");
+            const targetType = targetSlot.getAttribute("data-shape");
+
+            if (shapeType === targetType) {
+                handleSuccessfulMatch(draggedElement, targetSlot);
+            } else {
+                draggedElement.classList.add("animate-bounce");
+                setTimeout(() => {
+                    draggedElement.classList.remove("animate-bounce");
+                }, 1000);
+            }
+        }
+
+        function selectShape(shapeName) {
+            document.querySelectorAll(".shape-item").forEach(item => {
+                item.classList.remove("scale-110", "opacity-50");
+            });
+
+            const elementId = "source-" + shapeName;
+            const element = document.getElementById(elementId);
+            
+            if (element && !element.classList.contains("opacity-20")) {
+                selectedShape = shapeName;
+                element.classList.add("scale-110", "opacity-50");
+            }
+        }
+
+        function targetSlotClicked(slotShapeName) {
+            if (!selectedShape) return;
+
+            if (selectedShape === slotShapeName) {
+                const draggedElement = document.getElementById("source-" + selectedShape);
+                const targetSlot = document.querySelector(`.target-slot[data-shape="${slotShapeName}"]`);
+                handleSuccessfulMatch(draggedElement, targetSlot);
+            } else {
+                const activeElement = document.getElementById("source-" + selectedShape);
+                if (activeElement) {
+                    activeElement.classList.add("animate-ping");
+                    setTimeout(() => {
+                        activeElement.classList.remove("animate-ping");
+                    }, 500);
+                }
+            }
+            
+            selectedShape = null;
+            document.querySelectorAll(".shape-item").forEach(item => {
+                item.classList.remove("scale-110", "opacity-50");
+            });
+        }
+
+        function handleSuccessfulMatch(sourceElement, targetSlot) {
+            const shapeType = sourceElement.getAttribute("data-shape");
+            const targetColor = shapeColors[shapeType] || '#000000';
+            
+            const sourceSvg = sourceElement.querySelector('svg');
+            if (sourceSvg) {
+                const filledSvg = sourceSvg.cloneNode(true);
+                filledSvg.setAttribute('class', 'w-14 h-14 transition-all duration-300 scale-100');
+                filledSvg.setAttribute('fill', targetColor);
+                filledSvg.style.color = targetColor;
+                
+                targetSlot.innerHTML = '';
+                targetSlot.appendChild(filledSvg);
+            }
+            
+            sourceElement.classList.add("opacity-20", "pointer-events-none");
+            sourceElement.classList.remove("scale-110", "opacity-50");
+
+            playMatchSound();
+
+            matchedShapesCount++;
+
+            if (matchedShapesCount === totalShapes) {
+                setTimeout(() => {
+                    completeGame();
+                }, 500);
+            }
+        }
+
+        function completeGame() {
+            document.getElementById('name-dimitris').style.color = '#3b82f6';
+            document.getElementById('name-aliki').style.color = '#ec4899';
+            
+            document.getElementById('head-dimitris').classList.add('animate-wobble');
+            document.getElementById('head-aliki').classList.add('animate-wobble');
+
+            playVictoryMelody();
+
+            triggerConfetti();
+        }
+
+        function triggerConfetti() {
+            const canvas = document.getElementById('confetti-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            let particles = [];
+            const colors = ['#000000', '#333333', '#666666', '#999999', '#cccccc'];
+            
+            for (let i = 0; i < 120; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 5 + 3,
+                    d: Math.random() * canvas.height,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngleIncremental: Math.random() * 0.05 + 0.01,
+                    tiltAngle: 0
+                });
+            }
+            
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach((p, idx) => {
+                    p.tiltAngle += p.tiltAngleIncremental;
+                    p.y += (Math.cos(p.d) + 3 + p.r / 2) / 2;
+                    p.x += Math.sin(p.tiltAngle);
+                    p.tilt = Math.sin(p.tiltAngle - idx / 3) * 12;
+                    
+                    if (p.y > canvas.height) {
+                        p.y = -20;
+                        p.x = Math.random() * canvas.width;
+                    }
+                    
+                    ctx.beginPath();
+                    ctx.lineWidth = p.r;
+                    ctx.strokeStyle = p.color;
+                    ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+                    ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+                    ctx.stroke();
+                });
+                
+                requestAnimationFrame(draw);
+            }
+            draw();
+        }
+
+        window.addEventListener('resize', () => {
+            const canvas = document.getElementById('confetti-canvas');
+            if (canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+        });
+    </script>
+</body>
+</html>
